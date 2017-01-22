@@ -11,7 +11,7 @@ import QuestionModal from '../components/QuestionModal.jsx';
 class InboxPageContainer extends React.Component {
    constructor() {
       super();
-      this.state = { isModalOpen: false, seconds: 0, countDown: 15 };
+      this.state = { isModalOpen: false, seconds: 0, countDown: 40 };
    }
 
    componentWillMount() {
@@ -36,7 +36,18 @@ class InboxPageContainer extends React.Component {
 
    componentWillUnmount() {
       this.resetBoard();
-      clearInterval(this.countDown);
+      this.clearInterval();
+   }
+
+   handleSubmit() {
+      this.resetBoard();
+      this.handleQuestionModalClose();
+      this.startTimer();
+   }
+
+   handleCancel() {
+      this.handleQuestionModalClose()
+      this.props.router.push('/about');
    }
 
    timer() {
@@ -54,12 +65,6 @@ class InboxPageContainer extends React.Component {
       this.props.ItemsActions.flipItem(cardId);
    }
 
-   handleSubmit() {
-      this.resetBoard();
-      this.handleQuestionModalClose();
-      this.startTimer();
-   }
-
    startTimer() {
       this.setState({ seconds: 0 });
       this.countDown = setInterval(this.timer.bind(this), 1000);
@@ -67,17 +72,16 @@ class InboxPageContainer extends React.Component {
 
    handleQuestionModalOpen() {
       this.setState({ isModalOpen: true });
-      clearInterval(this.countDown);
+      this.clearInterval();
    }
 
    handleQuestionModalClose() {
       this.setState({ isModalOpen: false });
-      clearInterval(this.countDown);
+      this.clearInterval();
    }
 
-   handleCancel() {
-      this.handleQuestionModalClose()
-      this.props.router.push('/about');
+   clearInterval() {
+      clearInterval(this.countDown);
    }
 
    renderInboxPage() {
@@ -110,7 +114,7 @@ class InboxPageContainer extends React.Component {
             {this.renderInboxPage()}
             {this.renderModal()}
          </div>
-      )
+      );
    }
 }
 
@@ -118,6 +122,7 @@ InboxPageContainer.propTypes = {
    items: React.PropTypes.array,
    selectedItemsId: React.PropTypes.array,
    isMatched: React.PropTypes.bool,
+   router: React.PropTypes.object.isRequired,
    ItemsActions: React.PropTypes.object,
    numberOfMoves: React.PropTypes.number
 }

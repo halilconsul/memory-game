@@ -8,7 +8,6 @@ function totalCardsFlipped(allItems) {
       if (item.isFlipped) counter++;
    });
    return counter;
-   console.log(counter);
 }
 
 export default createSelector(

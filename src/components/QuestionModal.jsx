@@ -2,6 +2,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
+import './QuestionModal.scss';
 
 class QuestionModal extends React.Component {
    handleClose() {
@@ -46,7 +47,7 @@ class QuestionModal extends React.Component {
    }
 
    renderActionButtons() {
-      const style = { margin: 12 };
+      const style = { margin: '12px' };
       return [
          <RaisedButton
             label='No'
@@ -60,7 +61,7 @@ class QuestionModal extends React.Component {
             onClick={this.handleSubmit.bind(this)}
             style={style}
          />
-      ]
+      ];
    }
 
    render() {

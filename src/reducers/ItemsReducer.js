@@ -12,13 +12,19 @@ const colors = ['#FFDAB9', '#9ACD32', '#20B2AA', '#FA8072', '#00CED1', '#87CEFA'
 
 export default function(state=initialState, action) {
    switch (action.type) {
+
+// ======== LOAD_ITEMS ======== //
+
       case AppConstants.LOAD_ITEMS_FULFILLED: {
+         const generatedItems = generateTable(action.payload, colors);
          return {
             ...state,
-            items: generateTable(action.payload, colors)
+            items: shuffle(generatedItems)
          }
       }
          break;
+
+// ======== FLIP_ITEM ======== //
 
       case AppConstants.FLIP_ITEM_FULFILLED: {
          const itemId = action.payload;
@@ -33,6 +39,8 @@ export default function(state=initialState, action) {
          }
       }
          break;
+
+// ======== COMPARE_ITEMS ======== //
 
        case AppConstants.COMPARE_ITEMS_FULFILLED: {
           const itemOne = action.payload[0];
@@ -58,6 +66,8 @@ export default function(state=initialState, action) {
        }
           break;
 
+// ======== TURN_ITEMS_BACK ======== //
+
       case AppConstants.TURN_ITEMS_BACK_FULFILLED: {
          const allItems = [...state.items];
          const filteredItems = allItems.filter(item => item.isValid === false);
@@ -74,6 +84,8 @@ export default function(state=initialState, action) {
          }
       }
          break;
+
+// ======== RESET_BOARD ======== //
 
       case AppConstants.RESET_BOARD_FULFILLED: {
          const allItems = [...state.items];

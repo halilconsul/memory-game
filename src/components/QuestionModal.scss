@@ -1,0 +1,13 @@
+@import '../style/variables.scss';
+
+.QuestionModal {
+   text-align: center;
+
+   .QuestionModal__title {
+      text-transform: uppercase;
+   }
+
+   .QuestionModal__text {
+      padding-top: $base-padding/1.3;
+   }
+}

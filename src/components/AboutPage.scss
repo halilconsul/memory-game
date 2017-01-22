@@ -1,12 +1,14 @@
+@import '../style/variables.scss';
+
 .AboutPage {
-   margin: 15px 0;
+   margin: $base-margin 0;
    height: 100%;
    text-align: center;
 
    .AboutPage__text {
-      margin: 10px 0;
-      background-color: #FFA89F;
-      padding: 25px;
+      margin: $base-margin/2 0;
+      background-color: $red;
+      padding: $base-padding;
       text-align: left;
 
       .AboutPage__name {

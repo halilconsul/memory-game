@@ -4,28 +4,46 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LinearProgress from 'material-ui/LinearProgress';
 import './InboxPage.scss';
 
-const InboxPage = props => (
-   <div className="InboxPage">
-      <div className="InboxPage__progress">
+class InboxPage extends React.Component {
+   renderBoxItems() {
+      return (
+         this.props.items.map(item =>
+            <BoxItem
+               key={item.id}
+               isOpen={item.isFlipped}
+               color={item.color}
+               isMatched={this.props.isMatched}
+               onCardCick={this.props.onCardCick.bind(null, item.id)}
+            />
+         )
+      );
+   }
+
+   renderProgressBar() {
+      return (
          <MuiThemeProvider>
-            <LinearProgress mode='determinate' style={{height: '3px', backgroundColor: '#3FCAB4'}} color='#FFA89F' value={props.seconds} max={props.countDown - .5}/>
+            <LinearProgress
+               mode='determinate'
+               value={this.props.seconds}
+               max={this.props.countDown - .5}
+            />
          </MuiThemeProvider>
-      </div>
-      <div className="InboxPage__box">
-         {
-            props.items.map(item =>
-               <BoxItem
-                  key={item.id}
-                  isOpen={item.isFlipped}
-                  color={item.color}
-                  isMatched={props.isMatched}
-                  onCardCick={props.onCardCick.bind(null, item.id)}
-               />
-            )
-         }
-      </div>
-   </div>
-);
+      );
+   }
+
+   render() {
+      return (
+         <div className="InboxPage">
+            <div className="InboxPage__progress">
+               {this.renderProgressBar()}
+            </div>
+            <div className="InboxPage__box">
+               {this.renderBoxItems()}
+            </div>
+         </div>
+      );
+   }
+}
 
 InboxPage.propTypes = {
    items: React.PropTypes.array,
