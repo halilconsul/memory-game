@@ -1,0 +1,42 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-size: 16px;
+   font-family: 'Arial', sans-serif;
+}
+
+.App {
+   margin: 0 auto;
+   width: 600px;
+
+      .App__nav {
+         background-color: #90E1CF;
+         // height: 50px;
+         display: flex;
+         align-items: center;
+
+         .App__menu {
+            list-style-type: none;
+            display: flex;
+            // border: 1px solid grey;
+            padding: 5px 40px;
+
+            .App__list {
+               // margin-left: 5px;
+               // background-color: #FFF792;
+               // padding: 5px;
+
+               .App__link {
+                  text-decoration: none;
+                  font-size: 18px;
+                  color: grey;
+               }
+            }
+         }
+      }
+
+      .App__children {
+         height: 550px;
+      }
+}

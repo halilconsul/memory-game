@@ -1,0 +1,16 @@
+.AboutPage {
+   margin: 15px 0;
+   height: 100%;
+   text-align: center;
+
+   .AboutPage__text {
+      margin: 10px 0;
+      background-color: #FFA89F;
+      padding: 25px;
+      text-align: left;
+
+      .AboutPage__name {
+         font-weight: bold;
+      }
+   }
+}

@@ -1,0 +1,12 @@
+.InboxPage {
+   // margin: 5px 0;
+   height: inherit;
+
+   .InboxPage__box {
+      margin: 0 auto;
+      width: 520px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+   }
+}
