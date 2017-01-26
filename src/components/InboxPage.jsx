@@ -25,19 +25,20 @@ class InboxPage extends React.Component {
             <LinearProgress
                mode='determinate'
                value={this.props.seconds}
-               max={this.props.countDown - .5}
+               max={this.props.countDown}
             />
          </MuiThemeProvider>
       );
    }
 
    render() {
+      const gameMode = `InboxPage__box InboxPage__box_${this.props.gameMode}`;
       return (
          <div className="InboxPage">
             <div className="InboxPage__progress">
                {this.renderProgressBar()}
             </div>
-            <div className="InboxPage__box">
+            <div className={gameMode}>
                {this.renderBoxItems()}
             </div>
          </div>
@@ -50,7 +51,8 @@ InboxPage.propTypes = {
    seconds: React.PropTypes.number,
    countDown: React.PropTypes.number,
    isMatched: React.PropTypes.bool,
-   onCardCick: React.PropTypes.func
+   onCardCick: React.PropTypes.func,
+   gameMode: React.PropTypes.string
 }
 
 export default InboxPage;

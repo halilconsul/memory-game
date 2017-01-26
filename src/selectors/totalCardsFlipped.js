@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const itemsSelector = store => store.items.items;
+const itemsSelector = store => store.board.items;
 
 function totalCardsFlipped(allItems) {
    let counter = 0;

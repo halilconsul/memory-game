@@ -1,0 +1,35 @@
+.Nav {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   // border: 1px solid grey;
+   width: 100%;
+
+   .Nav__menu {
+      list-style-type: none;
+      display: flex;
+      // border: 1px solid grey;
+   }
+
+   .Nav__clickers {
+      display: flex;
+      align-items: center;
+      // border: 1px solid grey;
+
+      .Nav__radioTitle {
+         font-size: 12px;
+         padding: 15px;
+         color: white;
+      }
+      .Nav_radioButtons {
+
+         .Nav_radio {
+            // background-color: red;
+            font-size: 12px;
+            color: red;
+         }
+      }
+   }
+
+
+}

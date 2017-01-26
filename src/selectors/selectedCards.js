@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const itemsSelector = store => store.items.items;
-const selectedItemsId = store => store.items.selectedItemsId;
+const itemsSelector = store => store.board.items;
+const selectedItemsId = store => store.board.selectedItemsId;
 
 function getSelectedItems(allItems, selectedItemsId) {
    const selectedItems = [];

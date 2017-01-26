@@ -1,10 +1,16 @@
 import AppConstants from '../constants/AppConstants.js';
 
 const ItemsActions = {
+   selectGameMode(level) {
+      return {
+         type: AppConstants.SELECT_GAME_MODE,
+         payload: level
+      }
+   },
+
    loadItems() {
       return {
-         type: AppConstants.LOAD_ITEMS_FULFILLED,
-         payload: 16
+         type: AppConstants.LOAD_ITEMS_FULFILLED
       }
    },
 

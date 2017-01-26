@@ -1,11 +1,12 @@
 import AppConstants from '../constants/AppConstants.js';
-import { generateTable } from '../utils/index.js';
+import { generateTable, selectLevel } from '../utils/index.js';
 import shuffle from 'lodash.shuffle';
 const initialState = {
    items: [],
    selectedItemsId: [],
    isMatched: true,
-   numberOfMoves: 0
+   numberOfMoves: 0,
+   gameMode: 'normal'
 }
 
 const colors = ['#FFDAB9', '#9ACD32', '#20B2AA', '#FA8072', '#00CED1', '#87CEFA', '#BA55D3', '#FF69B4', '#FF6347', '#FF8C00', '#D2691E', '#DEB887'];
@@ -13,10 +14,22 @@ const colors = ['#FFDAB9', '#9ACD32', '#20B2AA', '#FA8072', '#00CED1', '#87CEFA'
 export default function(state=initialState, action) {
    switch (action.type) {
 
+// ======== SELECT_GAME_MODE ======== //
+
+      case AppConstants.SELECT_GAME_MODE: {
+         return {
+            ...state,
+            gameMode: action.payload
+         }
+      }
+         break;
+
 // ======== LOAD_ITEMS ======== //
 
       case AppConstants.LOAD_ITEMS_FULFILLED: {
-         const generatedItems = generateTable(action.payload, colors);
+         const gameMode = state.gameMode;
+         const selectedLevel = selectLevel(gameMode);
+         const generatedItems = generateTable(selectedLevel, colors);
          return {
             ...state,
             items: shuffle(generatedItems)
@@ -88,11 +101,10 @@ export default function(state=initialState, action) {
 // ======== RESET_BOARD ======== //
 
       case AppConstants.RESET_BOARD_FULFILLED: {
-         const allItems = [...state.items];
-         allItems.map(item => item.isFlipped = false);
          return {
             ...state,
-            items: shuffle(allItems),
+            items: [],
+            selectedItemsId: [],
             numberOfMoves: 0
          }
       }

@@ -19,3 +19,12 @@ export function generateTable(number, colors) {
   }
   return allItems;
 }
+
+
+export function selectLevel(level) {
+   const levels = {
+      normal: 16,
+      hard: 24
+   }
+   return levels[level];
+}

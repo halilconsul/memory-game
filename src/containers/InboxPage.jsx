@@ -11,11 +11,11 @@ import QuestionModal from '../components/QuestionModal.jsx';
 class InboxPageContainer extends React.Component {
    constructor() {
       super();
-      this.state = { isModalOpen: false, seconds: 0, countDown: 40 };
+      this.state = { isModalOpen: false, seconds: 0, countDown: 60 };
    }
 
    componentWillMount() {
-      this.props.ItemsActions.loadItems();
+      this.loadItems();
    }
 
    componentDidMount() {
@@ -41,6 +41,7 @@ class InboxPageContainer extends React.Component {
 
    handleSubmit() {
       this.resetBoard();
+      this.loadItems();
       this.handleQuestionModalClose();
       this.startTimer();
    }
@@ -55,6 +56,10 @@ class InboxPageContainer extends React.Component {
       if (this.state.seconds == this.state.countDown) {
          this.handleQuestionModalOpen();
       }
+   }
+
+   loadItems() {
+      this.props.ItemsActions.loadItems();
    }
 
    resetBoard() {
@@ -84,6 +89,15 @@ class InboxPageContainer extends React.Component {
       clearInterval(this.countDown);
    }
 
+   allCardsFlipped() {
+      const { totalCardsFlipped, items } = this.props;
+      if (totalCardsFlipped === items.length) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+
    renderInboxPage() {
       return (
          <InboxPage
@@ -91,6 +105,7 @@ class InboxPageContainer extends React.Component {
             seconds={this.state.seconds}
             countDown={this.state.countDown}
             isMatched={this.props.isMatched}
+            gameMode={this.props.gameMode}
             onCardCick={this.handleCardClick.bind(this)}
          />
       );
@@ -103,7 +118,7 @@ class InboxPageContainer extends React.Component {
             onSubmit={this.handleSubmit.bind(this)}
             onClose={this.handleCancel.bind(this)}
             numberOfMoves={this.props.numberOfMoves}
-            allCardsFlipped={this.props.totalCardsFlipped === this.props.items.length ? true : false}
+            allCardsFlipped={this.allCardsFlipped()}
          />
       );
    }
@@ -129,10 +144,11 @@ InboxPageContainer.propTypes = {
 
 function mapStateToProps(store) {
    return {
-      items: store.items.items,
+      items: store.board.items,
       selectedItems: getSelectedItems(store),
-      isMatched: store.items.isMatched,
-      numberOfMoves: store.items.numberOfMoves,
+      isMatched: store.board.isMatched,
+      numberOfMoves: store.board.numberOfMoves,
+      gameMode: store.board.gameMode,
       totalCardsFlipped: totalCardsFlipped(store)
    }
 }

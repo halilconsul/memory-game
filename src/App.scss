@@ -12,14 +12,9 @@
    width: 800px;
 
       .App__nav {
-         background-color: $green;
+         background-color: lightslategray;
          display: flex;
-         justify-content: space-between;
          align-items: center;
-
-         .App__menu {
-            list-style-type: none;
-            display: flex;
-         }
+         justify-content: space-between;
       }
 }

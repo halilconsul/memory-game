@@ -7,6 +7,13 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+   }
+
+   .InboxPage__box_normal {
       width: 550px;
+   }
+
+   .InboxPage__box_hard {
+      width: 800px;
    }
 }

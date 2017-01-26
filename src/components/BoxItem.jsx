@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import './BoxItem.scss';
 
 class BoxItem extends React.Component {
