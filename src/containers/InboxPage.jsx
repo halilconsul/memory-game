@@ -11,7 +11,7 @@ import QuestionModal from '../components/QuestionModal.jsx';
 class InboxPageContainer extends React.Component {
    constructor() {
       super();
-      this.state = { isModalOpen: false, seconds: 0, countDown: 60 };
+      this.state = { isModalOpen: false, seconds: 0, countDown: 80 };
    }
 
    componentWillMount() {

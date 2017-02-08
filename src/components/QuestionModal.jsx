@@ -42,7 +42,7 @@ class QuestionModal extends React.Component {
       if (this.props.allCardsFlipped) {
          return this.renderSuccess();
       } else {
-         return this.renderFail()
+         return this.renderFail();
       }
    }
 
