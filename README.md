@@ -1,1 +1,1 @@
-just a simple memory game on react/redux
+Really cool memory game on React/Redux
